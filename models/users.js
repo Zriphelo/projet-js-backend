@@ -14,7 +14,7 @@ const defaultItems = [
   {
     username: "admin",
     password: "$2b$10$RqcgWQT/Irt9MQC8UfHmjuGCrQkQNeNcU6UtZURdSB/fyt6bMWARa",//"admin",
-  },
+  }
 ];
 
 class Users {
