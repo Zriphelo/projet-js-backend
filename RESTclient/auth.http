@@ -1,5 +1,5 @@
-### Connect user
-GET http://localhost:3000/auths/login
+### login admin
+POST http://localhost:3000/auths/login
 Content-Type: application/json
 
 {
@@ -8,5 +8,19 @@ Content-Type: application/json
 }
 
 ### register user
+POST http://localhost:3000/auths/register
+Content-Type: application/json
+
+{
+    "username":"tartine",
+    "password":"tartine"
+}
+
+### login user
 POST http://localhost:3000/auths/login
 Content-Type: application/json
+
+{
+    "username":"tartine",
+    "password":"tartine"
+}
