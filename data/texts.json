@@ -1,12 +1,1 @@
-[
-    {
-        "id": 1,
-        "title":"Dictée 1",
-        "text":"Le texte de la dictée 2, ajoutée le 02-12-2021"
-    },
-    {
-        "id": 2,
-        "title":"Dictée 2",
-        "text":"Le texte de la dictée 3, ajoutée le 02-12-2021"
-    }
-]
+[{"id":1,"title":"Dictée 1","text":"Le texte de la dictée 1, écrit le 02-12-2021"},{"id":2,"title":"Nouvelle dictée","text":"Apprécions ensemble cette nouvelle dictée: la dictée # >= 3"}]

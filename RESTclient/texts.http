@@ -1,2 +1,14 @@
 ### get all texts
-GET https://localhost:3000/texts/
+GET http://localhost:3000/texts
+
+### get one text
+GET http://localhost:3000/texts/2
+
+### add one text
+POST http://localhost:3000/texts/add
+Content-Type: application/json
+
+{
+    "title":"Nouvelle dictée",
+    "text":"Apprécions ensemble cette nouvelle dictée: la dictée # >= 3"
+}

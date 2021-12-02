@@ -4,6 +4,7 @@ const { parse, serialize } = require("../utils/json");
 // Default data
 const defaultItems = [
   {
+    id: 0,
     title: "Dictée par défaut",
     text: "Le texte de cette dictée à été écrit le 02-12-2021"
   }
@@ -69,6 +70,7 @@ class Texts {
       const items = parse(this.jsonDbPath, this.defaultItems);
   
       const newitem = {
+        id: this.getNextId(),
         title: body.title,
         text: body.text
       };
