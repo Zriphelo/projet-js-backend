@@ -1,0 +1,2 @@
+### get all texts
+GET https://localhost:3000/texts/
