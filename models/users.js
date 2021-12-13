@@ -12,7 +12,9 @@ const saltRounds = 10;
 // Default data
 const defaultItems = [
   {
+    id: 0,
     username: "admin",
+    role: "admin",
     password: "$2b$10$RqcgWQT/Irt9MQC8UfHmjuGCrQkQNeNcU6UtZURdSB/fyt6bMWARa",//"admin",
   }
 ];
@@ -80,6 +82,7 @@ class Users {
     // add new item to the menu
 
     const newitem = {
+      id: this.getNextId(),
       username: body.username,
       role: "regular",
       password: hashedPassword,
@@ -165,11 +168,11 @@ class Users {
    * be created (if username already in use)
    */
 
-  register(username, password) {
+  async register(username, password) {
     const userFound = this.getOneByUsername(username);
     if (userFound) return;
 
-    const newUser = this.addOne({ username: username, password: password });
+    const newUser = await this.addOne({username: username, password: password });
 
     const authenticatedUser = {
       username: username,
