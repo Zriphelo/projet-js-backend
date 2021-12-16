@@ -55,12 +55,12 @@ class Scores {
      * @param {string} player - name of the item to find
      * @returns {object} the item found or undefined if the title does not lead to a item
      */
-    getOneByPlayer(id) {
+    getScoresByPlayer(id) {
       const items = parse(this.jsonDbPath, this.defaultItems);
-      const foundIndex = items.findIndex((item) => item.player == id);
-      if (foundIndex < 0) return;
+      const filteredItems = items.filter((item) => item.player == id);
+      if (filteredItems == null) return;
   
-      return items[foundIndex];
+      return filteredItems;
     }
 
     /**
@@ -68,12 +68,12 @@ class Scores {
      * @param {string} player - name of the item to find
      * @returns {object} the item found or undefined if the title does not lead to a item
      */
-     getOneByText(id) {
+     getScoresByText(id) {
         const items = parse(this.jsonDbPath, this.defaultItems);
-        const foundIndex = items.findIndex((item) => item.text == id);
-        if (foundIndex < 0) return;
+        const filteredItems = items.filter((item) => item.text == id);
+        if (filteredItems < 0) return;
     
-        return items[foundIndex];
+        return filteredItems;
       }
   
     /**
@@ -89,7 +89,7 @@ class Scores {
         id: this.getNextId(),
         player: body.player,
         text: body.text,
-        date = Date.now()
+        date: Date.now()
       };
       items.push(newitem);
       serialize(this.jsonDbPath, items);

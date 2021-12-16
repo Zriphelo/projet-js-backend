@@ -1,6 +1,45 @@
 @baseUrl = http://localhost:3000/scores
 
 
-### add un score
+### get les scores du j1
+GET {{baseUrl}}/player/1
+
+### get les scures du t1
+GET {{baseUrl}}/text/1
 
 
+### add un score j1 t1
+POST {{baseUrl}}/add
+Content-Type: application/json
+
+{
+    "player":1,
+    "text":1
+}
+
+### add un score j2 t1
+POST {{baseUrl}}/add
+Content-Type: application/json
+
+{
+    "player":2,
+    "text":1
+}
+
+### add un score j1 t2
+POST {{baseUrl}}/add
+Content-Type: application/json
+
+{
+    "player":1,
+    "text":2
+}
+
+### add un score j2 t2
+POST {{baseUrl}}/add
+Content-Type: application/json
+
+{
+    "player":2,
+    "text":2
+}
