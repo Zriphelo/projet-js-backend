@@ -4,8 +4,11 @@
 ### get les scores du j1
 GET {{baseUrl}}/player/1
 
-### get les scures du t1
+### get les scores du t1
 GET {{baseUrl}}/text/1
+
+### get le score #1
+GET {{baseUrl}}/1
 
 
 ### add un score j1 t1
@@ -14,7 +17,8 @@ Content-Type: application/json
 
 {
     "player":1,
-    "text":1
+    "text":1,
+    "score":150
 }
 
 ### add un score j2 t1
@@ -23,7 +27,8 @@ Content-Type: application/json
 
 {
     "player":2,
-    "text":1
+    "text":1,
+    "score":230
 }
 
 ### add un score j1 t2
@@ -32,7 +37,8 @@ Content-Type: application/json
 
 {
     "player":1,
-    "text":2
+    "text":2,
+    "score":240
 }
 
 ### add un score j2 t2
@@ -41,5 +47,6 @@ Content-Type: application/json
 
 {
     "player":2,
-    "text":2
+    "text":2,
+    "score":190
 }

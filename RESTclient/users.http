@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:3000/users
+
+### changer le nom d'un user
+PUT {{baseUrl}}/tartine
+Content-Type: application/json
+
+{
+    "password":"tartine",
+    "username":"tartine",
+    "role":"regular"
+}
