@@ -4,12 +4,20 @@ const { Scores } = require("../models/scores");
 const scoresModel = new Scores();
 
 
-// GET /texts : read all the texts
+// GET /scores : read all the texts
 router.get("/", function(req, res){
     return res.json(scoresModel.getAll());
 })
 
-// GET /texts : read all the scores of player
+// GET /scores/{id} : get a score from it's id
+router.get("/:id", function(req, res){
+    const score = scoresModel.getOne(req.params.id);
+    if(!score) return res.sendStatus(404);
+
+    return res.json(score);
+})
+
+// GET /scores/player/{playerid} : read all the scores of player
 router.get("/player/:playerId", function(req, res){
     const scores = scoresModel.getScoresByPlayer(req.params.playerId);
     if (!scores) return res.status(404).end();
@@ -17,7 +25,7 @@ router.get("/player/:playerId", function(req, res){
     return res.json(scores);
 })
 
-// GET /texts : read all the scores of text
+// GET /scores/text/{textId} : read all the scores of text
 router.get("/text/:textId", function(req, res){
     const scores = scoresModel.getScoresByText(req.params.textId);
     if (!scores) return res.status(404).end();

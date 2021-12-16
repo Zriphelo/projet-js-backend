@@ -1,11 +1,13 @@
+@baseUrl = http://localhost:3000/texts
+
 ### get all texts
-GET http://localhost:3000/texts
+GET {{baseUrl}}
 
 ### get one text
-GET http://localhost:3000/texts/2
+GET {{baseUrl}}/2
 
 ### add one text
-POST http://localhost:3000/texts/add
+POST {{baseUrl}}/add
 Content-Type: application/json
 
 {
