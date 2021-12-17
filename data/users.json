@@ -1,1 +1,1 @@
-[{"username":"admin","password":"$2b$10$RqcgWQT/Irt9MQC8UfHmjuGCrQkQNeNcU6UtZURdSB/fyt6bMWARa"},{"username":"tartine","role":"regular","password":"$2b$10$VMWrkyWjWScquPj42CmEkO/8nQfFROGBk0rEBjKNmcWIurEBVXSbi"}]
+[{"id":1,"username":"tartine","role":"regular","password":"$2b$10$/UsdKnlMbfO0Lpg4FiM.nut4d0qfyqDw3b9rY82NNHeLXTJGMqIze"},{"id":2,"username":"tarte","role":"regular","password":"$2b$10$IjP8PNU4axTeyo7/MBcZhunmlvoPy/6s7YLxN0rY4kJB3XFZ4Yyuq"},{"id":3,"username":"admin","role":"regular","password":"$2b$10$aIQdqOI9aduoH5zOr8OPWehUlUi6DeqUNsZ.g9F6IG382GB1GTgmm"}]

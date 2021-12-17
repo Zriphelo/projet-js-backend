@@ -1,16 +1,19 @@
-const jsonDbPath = __dirname + "/../data/texts.json";
+const jsonDbPath = __dirname + "/../data/scores.json";
 const { parse, serialize } = require("../utils/json");
 
 // Default data
 const defaultItems = [
   {
-    id: 0,
-    title: "Dictée par défaut",
-    text: "Le texte de cette dictée à été écrit le 02-12-2021"
+    id: 1,
+    player: 1,
+    text: 1,
+    score: 100,
+    date: "13-12-2021"
   }
 ];
 
-class Texts {
+
+class Scores {
     constructor(dbPath = jsonDbPath, items = defaultItems) {
       this.jsonDbPath = dbPath;
       this.defaultItems = items;
@@ -49,16 +52,29 @@ class Texts {
   
     /**
      * Returns the item identified by username
-     * @param {string} title - name of the item to find
+     * @param {string} player - name of the item to find
      * @returns {object} the item found or undefined if the title does not lead to a item
      */
-    getOneByTitle(title) {
+    getScoresByPlayer(id) {
       const items = parse(this.jsonDbPath, this.defaultItems);
-      const foundIndex = items.findIndex((item) => item.title == title);
-      if (foundIndex < 0) return;
+      const filteredItems = items.filter((item) => item.player == id);
+      if (filteredItems == null) return;
   
-      return items[foundIndex];
+      return filteredItems;
     }
+
+    /**
+     * Returns the item identified by username
+     * @param {string} player - name of the item to find
+     * @returns {object} the item found or undefined if the title does not lead to a item
+     */
+     getScoresByText(id) {
+        const items = parse(this.jsonDbPath, this.defaultItems);
+        const filteredItems = items.filter((item) => item.text == id);
+        if (filteredItems < 0) return;
+    
+        return filteredItems;
+      }
   
     /**
      * Add a item in the DB and returns the added item (containing a new id)
@@ -71,8 +87,9 @@ class Texts {
   
       const newitem = {
         id: this.getNextId(),
-        title: body.title,
-        text: body.text
+        player: body.player,
+        text: body.text,
+        date: Date.now()
       };
       items.push(newitem);
       serialize(this.jsonDbPath, items);
@@ -117,4 +134,4 @@ class Texts {
     }
     
   }
-module.exports = { Texts };
+module.exports = { Scores };

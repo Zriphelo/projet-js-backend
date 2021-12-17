@@ -7,12 +7,30 @@ Content-Type: application/json
     "password":"admin"
 }
 
+### register admin
+POST http://localhost:3000/auths/register
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
 ### register user
 POST http://localhost:3000/auths/register
 Content-Type: application/json
 
 {
     "username":"tartine",
+    "password":"tartine"
+}
+
+### register user
+POST http://localhost:3000/auths/register
+Content-Type: application/json
+
+{
+    "username":"tarte",
     "password":"tartine"
 }
 
