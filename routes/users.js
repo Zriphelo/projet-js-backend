@@ -10,13 +10,31 @@ router.get("/", authorize, function (req, res) {
   return res.json(usersModel.getAll());
 });
 
+// read one user by it's user id
+router.get("/id/:id",function(req, res) {
+  if(
+    !req.params.id < 0
+  )
+  return res.sendStatus(400);
+  return res.json(usersModel.getOne(req.params.id));
+});
+
+// read one user by it's unique username
+router.get("/name/:username",function(req, res) {
+  if(
+    !req.params.id < 0
+  )
+  return res.sendStatus(400);
+  return res.json(usersModel.getOneByUsername(req.params.username));
+});
+
 // Update the user data, but refuse to update the username and password
 // Only the authenticated user can update its data, not those of somebody else
 router.put("/:username", authorize, function (req, res) {
   if (
     !req.body ||
-    req.body.password ||
-    req.body.username ||
+    !req.body.password ||
+    !req.body.username ||
     (req.body.role && req.body.role.length === 0)
   )
     return res.sendStatus(400);
