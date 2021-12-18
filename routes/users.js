@@ -28,6 +28,21 @@ router.get("/name/:username",function(req, res) {
   return res.json(usersModel.getOneByUsername(req.params.username));
 });
 
+router.post("/sendScores", async function(req, res) {
+
+
+  if (
+      !req.body ||
+      !req.body.password ||
+      !req.body.username
+    )
+    return res.sendStatus(400);
+
+    
+  return usersModel.sendMail(req.body.username, req.body.password);
+});
+
+
 // Update the user data, but refuse to update the username and password
 // Only the authenticated user can update its data, not those of somebody else
 router.put("/:username", authorize, function (req, res) {
