@@ -15,7 +15,7 @@ router.get("/id/:id",function(req, res) {
   if(
     !req.params.id < 0
   )
-  return res.sendStatus(400);
+    return res.sendStatus(400).end();
   return res.json(usersModel.getOne(req.params.id));
 });
 
@@ -24,7 +24,7 @@ router.get("/name/:username",function(req, res) {
   if(
     !req.params.id < 0
   )
-  return res.sendStatus(400);
+    return res.sendStatus(400).end();
   return res.json(usersModel.getOneByUsername(req.params.username));
 });
 
@@ -36,10 +36,14 @@ router.post("/sendScores", async function(req, res) {
       !req.body.password ||
       !req.body.username
     )
-    return res.sendStatus(400);
+    return res.sendStatus(400).end();
 
     
-  return usersModel.sendMail(req.body.username, req.body.password);
+  let email = await usersModel.sendMail(req.body.username, req.body.password);
+  if (!email)
+    return res.sendStatus(401).end();
+
+  return res.json(email.messageId);
 });
 
 
