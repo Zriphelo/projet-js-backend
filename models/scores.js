@@ -89,6 +89,7 @@ class Scores {
         id: this.getNextId(),
         player: body.player,
         text: body.text,
+        score: body.score,
         date: Date.now()
       };
       items.push(newitem);
