@@ -1,3 +1,4 @@
+const emailCheck = require("email-check");
 var express = require("express");
 var router = express.Router();
 const { Users } = require("../models/users");
@@ -11,13 +12,24 @@ router.post("/register", async function (req, res, next) {
   if (
     !req.body ||
     (req.body.username && req.body.username.length === 0) ||
-    (req.body.password && req.body.password.length === 0)
+    (req.body.password && req.body.password.length === 0) ||
+    (req.body.email && req.body.email.length === 0)
   )
     return res.status(400).end();
 
+  
+  emailCheck(req.body.email)
+  .then(function(res){
+
+  })
+  .catch(function (err) {
+    return res.status(401).end();
+  })
+
   const authenticatedUser = await userModel.register(
     req.body.username,
-    req.body.password
+    req.body.password,
+    req.body.email
   );
   // Error code '409 Conflict' if the username already exists
   if (!authenticatedUser) return res.status(409).end();

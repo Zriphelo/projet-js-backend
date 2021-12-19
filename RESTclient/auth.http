@@ -1,3 +1,23 @@
+### register th
+POST http://localhost:3000/auths/register
+Content-Type: application/json
+
+{
+    "username":"thomas",
+    "password":"2405DekSabSid1704",
+    "email":"thomas.dekimpe@student.vinci.be"
+}
+
+### login th
+POST http://localhost:3000/auths/login
+Content-Type: application/json
+
+{
+    "username":"thomas",
+    "password":"2405DekSabSid1704"
+}
+
+
 ### login admin
 POST http://localhost:3000/auths/login
 Content-Type: application/json
@@ -13,7 +33,8 @@ Content-Type: application/json
 
 {
     "username":"admin",
-    "password":"admin"
+    "password":"admin",
+    "email":"test@example.com"
 }
 
 ### register user
@@ -31,7 +52,8 @@ Content-Type: application/json
 
 {
     "username":"tarte",
-    "password":"tartine"
+    "password":"tartine",
+    "email":"test@example.com"
 }
 
 ### login user
