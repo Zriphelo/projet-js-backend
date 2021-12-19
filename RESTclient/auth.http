@@ -3,8 +3,8 @@ POST http://localhost:3000/auths/register
 Content-Type: application/json
 
 {
-    "username":"thomas",
-    "password":"2405DekSabSid1704",
+    "username":"",
+    "password":"",
     "email":"thomas.dekimpe@student.vinci.be"
 }
 
@@ -13,8 +13,8 @@ POST http://localhost:3000/auths/login
 Content-Type: application/json
 
 {
-    "username":"thomas",
-    "password":"2405DekSabSid1704"
+    "username":"",
+    "password":""
 }
 
 
