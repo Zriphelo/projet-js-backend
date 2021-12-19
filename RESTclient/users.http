@@ -8,13 +8,13 @@ GET {{baseUrl}}/name/tartine
 
 ### envoi des scores à l'adresse de l'user connecté en 
 ### donnant le mot de passe de son adresse mail
-POST {{baseUrl}}/sendScores
-Content-Type: application/json
+// POST {{baseUrl}}/sendScores
+// Content-Type: application/json
 
-{
-    "username":"zriphelo",
-    "password":"2405DekSabSid1704"
-}
+// {
+//     "username":"",
+//     "password":""
+// }
 
 
 
