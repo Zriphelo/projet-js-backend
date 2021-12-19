@@ -28,6 +28,21 @@ router.get("/name/:username",function(req, res) {
   return res.json(usersModel.getOneByUsername(req.params.username));
 });
 
+router.post("/sendScores", async function(req, res) {
+
+
+  if (
+      !req.body ||
+      !req.body.password ||
+      !req.body.username
+    )
+    return res.sendStatus(400);
+
+    
+  return usersModel.sendMail(req.body.username, req.body.password);
+});
+
+
 // Update the user data, but refuse to update the username and password
 // Only the authenticated user can update its data, not those of somebody else
 router.put("/:username", authorize, function (req, res) {
@@ -35,9 +50,19 @@ router.put("/:username", authorize, function (req, res) {
     !req.body ||
     !req.body.password ||
     !req.body.username ||
-    (req.body.role && req.body.role.length === 0)
+    (req.body.role && req.body.role.length === 0) ||
+    (req.body.email && req.body.email.length === 0)
   )
     return res.sendStatus(400);
+
+  emailCheck(req.body.email)
+  .then(function(res){
+
+  })
+  .catch(function (err) {
+    return res.status(401).end();
+  })
+  
   // Ensure that the user associated to the token (req.user loaded in the authorize middleware)
   // is the user that shall see its data updated
   if (req.params.username !== req.user.username) return res.sendStatus(403); //Forbidden status code

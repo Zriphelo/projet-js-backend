@@ -2,8 +2,13 @@ const jwt = require("jsonwebtoken");
 const { parse, serialize } = require("../utils/json");
 //var escape = require("escape-html");
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 const jwtSecret = "ilovemypizza!";
 const LIFETIME_JWT = 24 * 60 * 60 * 1000; // in ms : 24 * 60 * 60 * 1000 = 24h
+
+
+const { Scores } = require("../models/scores");
+const scoresModel = new Scores();
 
 const jsonDbPath = __dirname + "/../data/users.json";
 
@@ -86,6 +91,7 @@ class Users {
       username: body.username,
       role: "regular",
       password: hashedPassword,
+      email: body.email
     };
     items.push(newitem);
     serialize(this.jsonDbPath, items);
@@ -168,11 +174,11 @@ class Users {
    * be created (if username already in use)
    */
 
-  async register(username, password) {
+  async register(username, password, email) {
     const userFound = this.getOneByUsername(username);
     if (userFound) return;
 
-    const newUser = await this.addOne({username: username, password: password });
+    const newUser = await this.addOne({username: username, password: password, email: email });
 
     const authenticatedUser = {
       username: username,
@@ -189,6 +195,33 @@ class Users {
     authenticatedUser.token = token;
     return authenticatedUser;
   }
+
+  async sendMail(username, password) {
+    const userFound = this.getOneByUsername(username);
+    if (!userFound) return;
+    // checked hash of passwords
+    const match = await bcrypt.compare(password, userFound.password);
+    if (!match) return;
+
+  let transporter = nodemailer.createTransport({
+      host: "outlook.com",
+      port: 587,//uses port 465 if secure is true.
+      secure: false,
+      auth: { user: userFound.email, pass: password },
+  });
+
+  
+  let email = await transporter.sendMail({
+      from: userFound.username + ' <'+userFound.email+'>', // sender address
+      to: userFound.email, // list of recipients
+      subject: "My Scores", // Subject line
+      text: JSON.stringify(scoresModel.getScoresByPlayer(userFound.id)) // plain text body
+  //   html: "<b>My first Nodemailer email!</b>", // html body
+  });
+  console.log("Email: "+ email.messageId+" was sent.") //This prints to the console that the email has been sent.
+  return email;
+  }
+  
 }
 
 module.exports = { Users };
