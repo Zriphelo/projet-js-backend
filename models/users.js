@@ -198,28 +198,35 @@ class Users {
 
   async sendMail(username, password) {
     const userFound = this.getOneByUsername(username);
-    if (!userFound) return;
+    if (!userFound || !userFound.email) return;
+
     // checked hash of passwords
-    const match = await bcrypt.compare(password, userFound.password);
-    if (!match) return;
 
-  let transporter = nodemailer.createTransport({
-      host: "outlook.com",
-      port: 587,//uses port 465 if secure is true.
-      secure: false,
-      auth: { user: userFound.email, pass: password },
-  });
+    // const match = await bcrypt.compare(password, userFound.password);
+    // if (!match) return;
 
-  
-  let email = await transporter.sendMail({
-      from: userFound.username + ' <'+userFound.email+'>', // sender address
-      to: userFound.email, // list of recipients
-      subject: "My Scores", // Subject line
-      text: JSON.stringify(scoresModel.getScoresByPlayer(userFound.id)) // plain text body
-  //   html: "<b>My first Nodemailer email!</b>", // html body
-  });
-  console.log("Email: "+ email.messageId+" was sent.") //This prints to the console that the email has been sent.
-  return email;
+    let transporter = nodemailer.createTransport({
+        host: "outlook.com",
+        port: 587,//uses port 465 if secure is true.
+        secure: false,
+        auth: { user: userFound.email, pass: password },
+    });
+
+    let email;
+    try {
+      email = await transporter.sendMail({
+          from: userFound.username + ' <'+userFound.email+'>', // sender address
+          to: userFound.email, // list of recipients
+          subject: "My Scores", // Subject line
+          text: JSON.stringify(scoresModel.getScoresByPlayer(userFound.id)) // plain text body
+      //   html: "<b>My first Nodemailer email!</b>", // html body
+      });
+    } catch {
+      console.log("email could not be sent")
+      return;
+    }
+    console.log("Email: "+ email.messageId+" was sent.") //This prints to the console that the email has been sent.
+    return email;
   }
   
 }

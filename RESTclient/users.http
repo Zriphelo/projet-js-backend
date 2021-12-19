@@ -6,15 +6,15 @@ GET {{baseUrl}}/id/1
 ### get le joueur tartine
 GET {{baseUrl}}/name/tartine
 
-# ### envoi des scores à l'adresse de l'user connecté en 
-# ### donnant le mot de passe de son adresse mail
-# POST {{baseUrl}}/sendScores
-# Content-Type: application/json
+### envoi des scores à l'adresse de l'user connecté en 
+### donnant le mot de passe de son adresse mail
+// POST {{baseUrl}}/sendScores
+// Content-Type: application/json
 
-# {
-#     "username":"",
-#     "password":""
-# }
+// {
+//     "username":"",
+//     "password":""
+// }
 
 
 
