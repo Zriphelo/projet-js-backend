@@ -37,7 +37,8 @@ router.post("/add", function(req, res){
     if(
         !req.body ||
         !req.body.hasOwnProperty("player") ||
-        !req.body.hasOwnProperty("text")
+        !req.body.hasOwnProperty("text") ||
+        !req.body.hasOwnProperty("score")
     )
         return res.status(400).end();
 
